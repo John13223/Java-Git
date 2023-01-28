@@ -1,21 +1,42 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Demo
 {
-    
+    static Scanner kb;
     public static void main(String [] args)
     {
-        Scanner kb = new Scanner(System.in);
+         kb = new Scanner(System.in);
         System.out.println("Enter a number");
-        double d = kb.nextDouble();
+       
         Prog p;
-        if(d % 2 == 0)
+        if(getInput() % 2 == 0)
         {
             p = new ProgOne();
         }
         else
         {
-            p = new progtwo();
+            p = new ProgTwo();
         }
         p.run();
+    }
+    
+    private static int getInput()
+    {
+        boolean b = true;
+        int i = 0;
+        while (b != false)
+        {
+            try
+            {
+                i = kb.nextInt();
+                b = false;
+            }
+            catch (InputMismatchException e)
+            {
+                System.out.println("Please enter a valid Double.");
+                kb.nextLine();
+            }
+        }
+        return i;
     }
 }
